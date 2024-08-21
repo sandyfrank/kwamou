@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandy Frank Kwamou Ngaha - Current Research</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="research.html">Current Research</a></li>
+                <li><a href="experience.html">Professional Experiences</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="Teachings.html">Teachings</a></li>
+            </ul>
+            <div id="language-switcher">
+                <button onclick="setLanguage('fr')">Français</button>
+                <button onclick="setLanguage('en')">English</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="content-fr">
+        <h2>2023-2024</h2>
+        <p> CM/TD/TP: Algorithmique et Programmation en python (60h)</p>
+        <p>Licence 1 filière Physique,Chimie,Mécanique, Mathématiques Université de Grenoble Alpes, France</p>
+
+    </section>
+
+    <section id="content-en" style="display:none;">
+        <h2>2022-2023</h2>
+        <p>Algorithmics and Programming in Python (60h)</p>
+        <p>Bachelor 1 Physics,Chemistry,Mechanics, Mathematics University of Grenoble Alpes, France</p>   
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sandy Frank Kwamou Ngaha</p>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            if (lang === 'fr') {
+                document.getElementById('content-fr').style.display = 'block';
+                document.getElementById('content-en').style.display = 'none';
+            } else if (lang === 'en') {
+                document.getElementById('content-fr').style.display = 'none';
+                document.getElementById('content-en').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
 
