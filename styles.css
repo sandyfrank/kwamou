@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    max-width: 800px;
+    max-width: 100%; /* Allow body to use full width */
     margin: 0 auto;
     padding: 20px;
 }
@@ -76,4 +76,33 @@ footer {
     padding: 10px 0;
     border-top: 2px solid #f0f0f0;
     margin-top: 40px;
-    font-size
+    font-size: 0.8em; /* Adjusted font size */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .profile-container {
+        margin-top: 10px;
+    }
+
+    .profil-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+}
