@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandy Frank Kwamou Ngaha - Education</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="research.html">Current Research</a></li>
+                <li><a href="experience.html">Professional Experiences</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="awards.html">Awards</a></li>
+            </ul>
+            <div id="language-switcher">
+                <button onclick="setLanguage('fr')">Français</button>
+                <button onclick="setLanguage('en')">English</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="content-fr">
+        <h2>Éducation</h2>
+        <h3>Doctorat en Machine Learning et Génomique Computationnelle</h3>
+        <p><strong>Université Grenoble Alpes</strong> - 2023 à 2026</p>
+        
+        <h3>Master en Intelligence Artificielle</h3>
+        <p><strong>African Institute for Mathematical Sciences (AIMS), Cameroun</strong> - 2019 à 2020</p>
+        
+        <h3>Licence en Mathématiques Appliquées</h3>
+        <p><strong>Université de Douala , Cameroun</strong> - 2016 à 2019</p>
+    </section>
+
+    <section id="content-en" style="display:none;">
+        <h2> Education </h2>
+        <h3>PhD Candidate in Computational Genomics</h3>
+        <p><strong>Université Grenoble Alpes</strong> - 2023 to 2026 </p>
+        <p>Research Project: "Application of Machine Learning Techniques for Genomic Sequence Analysis."...</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sandy Frank Kwamou Ngaha</p>
+    </footer>
+  
+    <script>
+        function setLanguage(lang) {
+            if (lang === 'fr') {
+                document.getElementById('content-fr').style.display = 'block';
+                document.getElementById('content-en').style.display = 'none';
+            } else if (lang === 'en') {
+                document.getElementById('content-fr').style.display = 'none';
+                document.getElementById('content-en').style.display = 'block';
+            }
+        }
+    </script>
+  </body>
+  </html>
+
+    
