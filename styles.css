@@ -116,28 +116,28 @@ footer {
     }
 
     .profil-photo {
-        width: 100px;
-        height: 100px;
+        width: 200px;
+        height: 200px;
     }
 
     h1 {
-        font-size: 2em;
+        font-size: 10em;
     }
 
     p {
-        font-size: 1em;
+        font-size: 5em;
     }
 
     h2 {
-        font-size: 1.5em;
+        font-size: 8em;
     }
 
     h3 {
-        font-size: 1.2em;
+        font-size: 5em;
     }
 
     nav ul li {
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 50px;
     }
 }
