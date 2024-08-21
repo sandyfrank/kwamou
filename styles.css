@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    max-width: 100%; /* Allow body to use full width */
+    max-width: 1200px; /* Increased max-width for better readability */
     margin: 0 auto;
     padding: 20px;
 }
@@ -19,6 +19,26 @@ header {
 
 nav {
     text-align: right;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #f0f0f0;
+    text-decoration: none;
+    padding: 5px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
 #language-switcher button {
@@ -38,6 +58,7 @@ nav {
 
 .profile-container {
     margin-top: 20px;
+    text-align: center; /* Center-align profile container */
 }
 
 .profil-photo {
@@ -70,17 +91,22 @@ h2 {
     margin-bottom: 20px;
 }
 
+h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
 /* Footer styles */
 footer {
     text-align: center;
     padding: 10px 0;
     border-top: 2px solid #f0f0f0;
     margin-top: 40px;
-    font-size: 0.8em; /* Adjusted font size */
+    font-size: 0.8em;
 }
 
 /* Responsive design adjustments */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     body {
         padding: 10px;
     }
@@ -104,5 +130,14 @@ footer {
 
     h2 {
         font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
     }
 }
