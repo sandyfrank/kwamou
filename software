@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sandy Frank Kwamou Ngaha - Software / StopDiabete</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="experience.html">Research Projects</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="Teachings.html">Teachings</a></li>
+                <li><a href="software.html">Software</a></li>
+            </ul>
+            <div id="language-switcher">
+                <button onclick="setLanguage('fr')">Français</button>
+                <button onclick="setLanguage('en')">English</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="content-fr">
+        <h2>StopDiabète — Application de prédiction du risque de diabète</h2>
+        <p>StopDiabète est une application full‑stack conçue pour prédire le risque de diabète à partir de données cliniques simples (âge, IMC, HbA1c, antécédents, tabagisme...). L'interface publique est disponible ici : <a href="https://stopdiabete.streamlit.app/" target="_blank">stopdiabete.streamlit.app</a>.</p>
+
+        <h3>Technologies et rôle</h3>
+        <ul>
+            <li><strong>FastAPI + Uvicorn</strong> : Backend API REST exposant l'endpoint /predict. Traitement JSON, validation et gestion d'erreurs.</li>
+            <li><strong>Streamlit</strong> : Frontend interactif pour saisir les données, afficher résultats et informations pédagogiques.</li>
+            <li><strong>XGBoost</strong> : Modèle de classification entraîné pour estimer la probabilité de diabète.</li>
+            <li><strong>scikit‑learn</strong> : Preprocessing (StandardScaler) et utilitaires ; joblib pour sérialisation du scaler.</li>
+            <li><strong>joblib / format natif XGBoost</strong> : Sauvegarde des artefacts (scaler.joblib, best_xgb_model.json) pour un chargement rapide en production.</li>
+            <li><strong>Déploiement</strong> : Backend hébergé sur Render (plan gratuit) ; frontend hébergé sur Streamlit Cloud qui appelle le backend via son URL publique.</li>
+        </ul>
+
+        <h3>Fonctionnement (flux)</h3>
+        <ol>
+            <li>L'utilisateur saisit ses données dans l'UI Streamlit.</li>
+            <li>Le frontend envoie une requête POST JSON au backend FastAPI (Render).</li>
+            <li>Le backend charge le scaler et le modèle, normalise les données, construit un xgb.DMatrix puis prédit la probabilité.</li>
+            <li>Le backend renvoie la classe et la probabilité ; le frontend affiche le résultat et des conseils.</li>
+        </ol>
+
+        <h3>Remarques pratiques</h3>
+        <p>Le backend est déployé sur le plan gratuit de Render : l'instance gratuite se met en veille lorsqu'elle est inactive. Au réveil, le service peut mettre environ 50 secondes pour redevenir opérationnel — d'où un délai initial lors du premier accès.</p>
+
+        <h3>Pour les recruteurs / portfolio</h3>
+        <p>Projet utile pour démontrer : conception d'API sécurisées et légères (FastAPI), intégration de modèles ML en production (XGBoost + joblib), déploiement cloud pour prototypes, et développement d'interfaces utilisateur rapides (Streamlit). Le code et les artefacts peuvent être organisés dans un dépôt GitHub pour CI/CD et versioning modèle.</p>
+    </section>
+
+    <section id="content-en" style="display:none;">
+        <h2>StopDiabete — Diabetes risk prediction app</h2>
+        <p>StopDiabete is a full‑stack application that predicts diabetes risk from simple clinical inputs (age, BMI, HbA1c, history, smoking...). Public demo: <a href="https://stopdiabete.streamlit.app/" target="_blank">stopdiabete.streamlit.app</a>.</p>
+
+        <h3>Technologies & responsibilities</h3>
+        <ul>
+            <li><strong>FastAPI + Uvicorn</strong>: REST backend exposing /predict. Handles JSON, validation and errors.</li>
+            <li><strong>Streamlit</strong>: Interactive frontend for data entry, result display and educational content.</li>
+            <li><strong>XGBoost</strong>: Trained classifier providing probability predictions.</li>
+            <li><strong>scikit‑learn</strong>: Preprocessing (StandardScaler) and joblib serialization for the scaler.</li>
+            <li><strong>joblib / XGBoost native format</strong>: Artifacts saved as scaler.joblib and best_xgb_model.json for reliable loading in production.</li>
+            <li><strong>Deployment</strong>: Backend hosted on Render (free tier); frontend on Streamlit Cloud calling the Render backend via a public URL.</li>
+        </ul>
+
+        <h3>End‑to‑end flow</h3>
+        <ol>
+            <li>User fills the form in the Streamlit UI.</li>
+            <li>Frontend sends a POST JSON request to the FastAPI backend on Render.</li>
+            <li>Backend loads scaler/model, scales input, builds an xgb.DMatrix and calls model.predict.</li>
+            <li>Backend returns class and probability; frontend displays the decision and guidance.</li>
+        </ol>
+
+        <h3>Practical note</h3>
+        <p>The backend runs on Render's free tier which sleeps when idle. Waking the instance typically takes about 50 seconds — expect an initial delay when first accessing the app.</p>
+
+        <h3>Why include this project in a portfolio</h3>
+        <p>This project highlights API development (FastAPI), ML model productionization (XGBoost + serialization), and fast UI prototyping (Streamlit). Suitable for demonstrating end‑to‑end ML engineering and rapid deployment of prototypes. Consider adding CI/CD, model versioning and external artifact storage (S3) as next steps.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sandy Frank Kwamou Ngaha</p>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            if (lang === 'fr') {
+                document.getElementById('content-fr').style.display = 'block';
+                document.getElementById('content-en').style.display = 'none';
+            } else if (lang === 'en') {
+                document.getElementById('content-fr').style.display = 'none';
+                document.getElementById('content-en').style.display = 'block';
+            }
+        }
+        // Default language: French
+        setLanguage('fr');
+    </script>
+</body>
+</html>
