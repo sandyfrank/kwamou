@@ -14,16 +14,16 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Profile</a></li>
-                    <li><a href="pages/experience.html">Experience</a></li>
-                    <li><a href="pages/education.html">Education</a></li>
-                    <li><a href="pages/awards.html">Awards</a></li>
-                    <li><a href="pages/publications.html">Publications</a></li>
-                    <li><a href="pages/Teachings.html">Teachings</a></li>
-                    <li><a href="pages/software.html">Software</a></li>
+                    <li><a href="index.html" class="active" data-fr="Profil" data-en="Profile">Profile</a></li>
+                    <li><a href="pages/experience.html" data-fr="Expérience" data-en="Experience">Experience</a></li>
+                    <li><a href="pages/education.html" data-fr="Éducation" data-en="Education">Education</a></li>
+                    <li><a href="pages/awards.html" data-fr="Distinctions" data-en="Awards">Awards</a></li>
+                    <li><a href="pages/publications.html" data-fr="Publications" data-en="Publications">Publications</a></li>
+                    <li><a href="pages/Teachings.html" data-fr="Enseignement" data-en="Teachings">Teachings</a></li>
+                    <li><a href="pages/software.html" data-fr="Logiciels" data-en="Software">Software</a></li>
                 </ul>
                 <div id="language-switcher">
-                    <button onclick="setLanguage('fr')">🇫🇷 France</button>
+                    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
                     <button onclick="setLanguage('en')">🇬🇧 English</button>
                 </div>
             </nav>
@@ -61,6 +61,7 @@
 
     <script>
         function setLanguage(lang) {
+            // Switch content sections
             if (lang === 'fr') {
                 document.getElementById('content-fr').style.display = 'block';
                 document.getElementById('content-en').style.display = 'none';
@@ -68,7 +69,25 @@
                 document.getElementById('content-fr').style.display = 'none';
                 document.getElementById('content-en').style.display = 'block';
             }
+            
+            // Translate navigation menu
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                const translation = link.getAttribute('data-' + lang);
+                if (translation) {
+                    link.textContent = translation;
+                }
+            });
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
         }
+        
+        // Load saved language on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            setLanguage(savedLang);
+        });
     </script>
     <script src="assets/js/main.js"></script>
 </body>

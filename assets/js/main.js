@@ -53,11 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Enhanced language switcher with localStorage
+// Enhanced language switcher with localStorage and navigation translation
 function setLanguage(lang) {
     const contentFr = document.getElementById('content-fr');
     const contentEn = document.getElementById('content-en');
     
+    // Switch content sections
     if (contentFr && contentEn) {
         if (lang === 'fr') {
             contentFr.style.display = 'block';
@@ -66,10 +67,19 @@ function setLanguage(lang) {
             contentFr.style.display = 'none';
             contentEn.style.display = 'block';
         }
-        
-        // Save preference
-        localStorage.setItem('preferredLanguage', lang);
     }
+    
+    // Translate navigation menu
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+        const translation = link.getAttribute('data-' + lang);
+        if (translation) {
+            link.textContent = translation;
+        }
+    });
+    
+    // Save preference
+    localStorage.setItem('preferredLanguage', lang);
 }
 
 // Add smooth hover effect to images
