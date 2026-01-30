@@ -1,0 +1,555 @@
+/* CSS Variables for easy theming */
+:root {
+    --primary-color: #3b82f6;
+    --secondary-color: #1e40af;
+    --accent-color: #06b6d4;
+    --bg-dark: #0f172a;
+    --bg-darker: #020617;
+    --bg-card: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --border-color: #334155;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+    min-height: 100vh;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    position: relative;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    display: inline-block;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+    background-color: rgba(59, 130, 246, 0.08);
+}
+
+nav ul li a:hover::after {
+    width: 70%;
+}
+
+nav ul li a.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+nav ul li a.active::after {
+    display: none;
+}
+
+#language-switcher {
+    display: flex;
+    gap: 8px;
+}
+
+#language-switcher button {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 2px solid var(--border-color);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+#language-switcher button:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+#language-switcher button:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Profile Container */
+.profile-container {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.1));
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+.profil-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 24px;
+    border: 4px solid var(--primary-color);
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    object-fit: cover;
+}
+
+.profil-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 16px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.profile-container p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin: 12px 0;
+    color: var(--text-secondary);
+}
+
+.profile-container p:first-of-type {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.profile-container a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.profile-container a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Section styles */
+section {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 48px;
+    margin: 30px 0;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+}
+
+/* Entry containers for better organization */
+.entry {
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Date and location styling */
+.meta-info {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-style: italic;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+/* Blockquote and special text */
+blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Code and technical terms */
+code {
+    background: rgba(59, 130, 246, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'Courier New', monospace;
+    color: var(--accent-color);
+}
+
+/* Emphasis on numbers and stats */
+.number {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+/* Better text selection */
+::selection {
+    background: var(--primary-color);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--primary-color);
+    color: white;
+}
+
+h2 {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    color: var(--text-primary);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 16px;
+    margin-bottom: 36px;
+    margin-top: 0;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    letter-spacing: -0.01em;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: var(--accent-color);
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 60%;
+    }
+}
+
+h3 {
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+    margin: 32px 0 16px;
+    color: var(--text-primary);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+}
+
+/* Style for education/experience entries */
+section h3 {
+    position: relative;
+    padding-left: 0;
+    margin-bottom: 8px;
+}
+
+/* Remove dash from h3 and improve structure */
+section h3:not(:first-of-type) {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+p {
+    font-size: clamp(0.975rem, 2vw, 1.075rem);
+    margin: 10px 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 90ch;
+}
+
+/* Style for institution/company names */
+p strong {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.05em;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Style for dates and locations */
+section p:has(strong) {
+    margin-bottom: 16px;
+}
+
+/* Better spacing for paragraphs after strong elements */
+section p + p:not(:has(strong)) {
+    margin-top: 12px;
+    padding-left: 0;
+    font-size: 1rem;
+}
+
+strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Lists */
+ul, ol {
+    margin: 20px 0;
+    padding-left: 28px;
+}
+
+li {
+    margin: 12px 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+li::marker {
+    color: var(--primary-color);
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    transition: var(--transition);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+a:hover {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 24px 0;
+    margin-top: 60px;
+    border-top: 2px solid var(--border-color);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    header {
+        position: relative;
+        top: 0;
+    }
+    
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    nav ul {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .profile-container {
+        padding: 30px 15px;
+    }
+
+    .profil-photo {
+        width: 140px;
+        height: 140px;
+    }
+
+    section {
+        padding: 32px 24px;
+        margin: 20px 0;
+    }
+
+    h2 {
+        font-size: clamp(1.5rem, 3.5vw, 2rem);
+    }
+
+    h2::after {
+        width: 80%;
+    }
+
+    h3 {
+        font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    nav ul li a {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .profil-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    section {
+        padding: 24px 20px;
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    h2 {
+        font-size: clamp(1.35rem, 3vw, 1.75rem);
+        margin-bottom: 28px;
+    }
+
+    h3 {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        margin-top: 28px;
+    }
+
+    p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    li {
+        font-size: 0.95rem;
+    }
+}

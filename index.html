@@ -4,34 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sandy Frank Kwamou Ngaha - Profile</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Profile</a></li>
-                <li><a href="experience.html">Research Projects</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="awards.html">Awards</a></li>
-                <li><a href="publications.html">Publications</a></li>
-                <li><a href="Teachings.html">Teachings</a></li>
-                <li><a href="software.html">Software</a></li>
-            </ul>
-            <div id="language-switcher">
-                <button onclick="setLanguage('fr')">Français</button>
-                <button onclick="setLanguage('en')">English</button>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Profile</a></li>
+                    <li><a href="pages/experience.html">Research Projects</a></li>
+                    <li><a href="pages/education.html">Education</a></li>
+                    <li><a href="pages/awards.html">Awards</a></li>
+                    <li><a href="pages/publications.html">Publications</a></li>
+                    <li><a href="pages/Teachings.html">Teachings</a></li>
+                    <li><a href="pages/software.html">Software</a></li>
+                </ul>
+                <div id="language-switcher">
+                    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+                    <button onclick="setLanguage('en')">🇬🇧 English</button>
+                </div>
+            </nav>
+            <div class="profile-container">
+                <img src="assets/images/DSC_7627.jpg" alt="Photo de profil" class="profil-photo">
+                <h1>Sandy Frank Kwamou Ngaha</h1>
+                <p>Final year PhD student in Genomic data science</p>
+                <p>📍 Grenoble, France</p>
+                <p>📧 <a href="mailto:sandy.ngaha@aims-cameroon.org">sandy.ngaha@aims-cameroon.org</a> | <a href="mailto:kwamouns@univ-grenoble-alpes.fr">kwamouns@univ-grenoble-alpes.fr</a></p>
+                <p>📱 +33 7.68.01.47.69</p>
             </div>
-        </nav>
-        <div class="profile-container">
-            <img src="DSC_7627.jpg" alt="Photo de profil" class="profil-photo">
-            <h1>Sandy Frank Kwamou Ngaha</h1>
-            <p>Final year PhD student in Genomic data science</p>
-            <p>Grenoble, France</p>
-            <p>Email: <a href="mailto:sandy.ngaha@aims-cameroon.org">sandy.ngaha@aims-cameroon.org</a> | <a href="mailto:kwamouns@univ-grenoble-alpes.fr">kwamouns@univ-grenoble-alpes.fr</a></p>
-            <p>Téléphone : +33 7.68.01.47.69</p>
-        </div>
-    </header>
+        </header>
 
     <section id="content-fr">
         <h2>Profil</h2>
@@ -53,6 +57,7 @@
     <footer>
         <p>&copy; 2026 Sandy Frank Kwamou Ngaha</p>
     </footer>
+    </div>
 
     <script>
         function setLanguage(lang) {
@@ -65,5 +70,6 @@
             }
         }
     </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
