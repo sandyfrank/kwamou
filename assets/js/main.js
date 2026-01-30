@@ -55,15 +55,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Enhanced language switcher with localStorage and navigation translation
 function setLanguage(lang) {
+    // Switch profile sections
+    const profileFr = document.getElementById('profile-fr');
+    const profileEn = document.getElementById('profile-en');
+    
+    // Switch content sections
     const contentFr = document.getElementById('content-fr');
     const contentEn = document.getElementById('content-en');
     
-    // Switch content sections
-    if (contentFr && contentEn) {
-        if (lang === 'fr') {
+    if (lang === 'fr') {
+        if (profileFr && profileEn) {
+            profileFr.style.display = 'block';
+            profileEn.style.display = 'none';
+        }
+        if (contentFr && contentEn) {
             contentFr.style.display = 'block';
             contentEn.style.display = 'none';
-        } else if (lang === 'en') {
+        }
+    } else if (lang === 'en') {
+        if (profileFr && profileEn) {
+            profileFr.style.display = 'none';
+            profileEn.style.display = 'block';
+        }
+        if (contentFr && contentEn) {
             contentFr.style.display = 'none';
             contentEn.style.display = 'block';
         }
