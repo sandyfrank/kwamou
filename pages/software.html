@@ -28,67 +28,136 @@
             </div>
         </nav>
     </header>
-
     <section id="content-fr">
-        <h2>StopDiabète — Application de prédiction du risque de diabète</h2>
-        <p>StopDiabète est une application full‑stack conçue pour prédire le risque de diabète à partir de données cliniques simples (âge, IMC, HbA1c, antécédents, tabagisme...). L'interface publique est disponible ici : <a href="https://stopdiabete.streamlit.app/" target="_blank">stopdiabete.streamlit.app</a>.</p>
-        <p> Veuillez noter que lors du premier lancement de l’application, un temps de latence d’environ une minute est à prévoir. Il s’agit d’une limitation connue de l’offre gratuite de Render.</p>
-
-        <h3>Technologies et rôle</h3>
-        <ul>
-            <li><strong>FastAPI + Uvicorn</strong> : Backend API REST exposant l'endpoint /predict. Traitement JSON, validation et gestion d'erreurs.</li>
-            <li><strong>Streamlit</strong> : Frontend interactif pour saisir les données, afficher résultats et informations pédagogiques.</li>
-            <li><strong>XGBoost</strong> : Modèle de classification entraîné pour estimer la probabilité de diabète.</li>
-            <li><strong>scikit‑learn</strong> : Preprocessing (StandardScaler) et utilitaires ; joblib pour sérialisation du scaler.</li>
-            <li><strong>joblib / format natif XGBoost</strong> : Sauvegarde des artefacts (scaler.joblib, best_xgb_model.json) pour un chargement rapide en production.</li>
-            <li><strong>Déploiement</strong> : Backend hébergé sur Render (plan gratuit) ; frontend hébergé sur Streamlit Cloud qui appelle le backend via son URL publique.</li>
-        </ul>
-
-        <h3>Fonctionnement (flux)</h3>
-        <ol>
-            <li>L'utilisateur saisit ses données dans l'UI Streamlit.</li>
-            <li>Le frontend envoie une requête POST JSON au backend FastAPI (Render).</li>
-            <li>Le backend charge le scaler et le modèle, normalise les données, construit un xgb.DMatrix puis prédit la probabilité.</li>
-            <li>Le backend renvoie la classe et la probabilité ; le frontend affiche le résultat et des conseils.</li>
-        </ol>
-
-        <h3>Remarques pratiques</h3>
-        <p>Le backend est déployé sur le plan gratuit de Render : l'instance gratuite se met en veille lorsqu'elle est inactive. Au réveil, le service peut mettre environ 50 secondes pour redevenir opérationnel — d'où un délai initial lors du premier accès.</p>
-
-        <h3>Résumé </h3>
-        <p>Projet utile pour démontrer : conception d'API sécurisées et légères (FastAPI), intégration de modèles ML en production (XGBoost + joblib), déploiement cloud pour prototypes, et développement d'interfaces utilisateur rapides (Streamlit). Le code et les artefacts peuvent être organisés dans un dépôt GitHub pour CI/CD et versioning modèle.</p>
+      <h2>StopDiabète — Application web full‑stack pour le suivi du diabète et la prévention</h2>
+    
+      <p>
+        StopDiabète est une application web full‑stack conçue pour aider au suivi quotidien du diabète et à la prévention :
+        enregistrement des glycémies, statistiques (tendances, indicateurs), rappels et système d’alertes par email via des
+        contacts de confiance (“Contacts d’alerte”). L’objectif est d’offrir une expérience simple, rassurante et utile,
+        aussi bien pour les patients que pour leurs proches.
+        Démo : <a href="https://stopdiabete-1.onrender.com/" target="_blank">stopdiabete-1.onrender.com</a>.
+      </p>
+    
+      <h3>Technologies / frameworks et rôle</h3>
+      <ul>
+        <li>
+          <strong>Frontend — React: bibliothèque UI  + TypeScript</strong> :
+          application SPA, composants réutilisables, pages (Dashboard, Profil, Glycémie, Télésurveillance), logique d’état
+          et validation côté client.
+        </li>
+        <li>
+          <strong>Vite: outil de build </strong> :
+          bundling, dev server rapide, configuration frontend.
+        </li>
+        <li>
+          <strong>React Router: routage </strong> :
+          navigation SPA, routes protégées (auth), redirections.
+        </li>
+        <li>
+          <strong>Tailwind CSS: framework CSS utilitaire </strong> :
+          design moderne, responsive, composants UI cohérents.
+        </li>
+        <li>
+          <strong>Backend — Node.js + Express.js + TypeScript, FASTAPI </strong> :
+          API REST (auth, glycémies, profil, contacts d’alerte), validation, sécurité, CORS. API model IA pour prediction de risque
+        </li>
+        <li>
+          <strong>PostgreSQL: base de données relationnelle</strong> :
+          stockage des utilisateurs, glycémies, préférences, événements d’alerte.
+        </li>
+        <li>
+          <strong>pg: client PostgreSQL</strong> :
+          connexion DB côté backend, requêtes SQL, pool de connexions.
+        </li>
+        <li>
+          <strong>Nodemailer: envoi d’emails</strong> :
+          envoi des alertes et rappels par email.
+        </li>
+        <li>
+          <strong>Déploiement — Render: plateforme cloud </strong> :
+          frontend et backend déployés sur Render + base PostgreSQL Render.
+        </li>
+      </ul>
+    
+      <h3>Fonctionnement (flux)</h3>
+      <ol>
+        <li>L’utilisateur se connecte (authentification JWT) et accède à l’espace protégé.</li>
+        <li>Il enregistre ses mesures de glycémie (valeur, date/heure, contexte de mesure) et consulte l’historique.</li>
+        <li>Le backend stocke les données dans PostgreSQL et calcule des statistiques (tendances, indicateurs).</li>
+        <li>L’utilisateur configure des “Contacts d’alerte” pour recevoir des emails selon les règles (alertes et rappels).</li>
+      </ol>
+    
+      <h3>Résumé</h3>
+      <p>
+        Ce projet met en avant le développement full‑stack moderne (React + Express, FASTAPI), la gestion d’authentification,
+        l’intégration d’une base de données PostgreSQL, et un système d’alertes email orienté prévention.
+      </p>
     </section>
 
-    <section id="content-en" style="display:none;">
-        <h2>StopDiabete — Diabetes risk prediction app</h2>
-        <p>StopDiabete is a full‑stack application that predicts diabetes risk from simple clinical inputs (age, BMI, HbA1c, history, smoking...). Public demo: <a href="https://stopdiabete.streamlit.app/" target="_blank">stopdiabete.streamlit.app</a>.</p>
-        <p> Please note that when running the app for the first time, there may be a latency of about one minute. This is a known limitation of Render’s free tier.</p>
-
-        <h3>Technologies & responsibilities</h3>
-        <ul>
-            <li><strong>FastAPI + Uvicorn</strong>: REST backend exposing /predict. Handles JSON, validation and errors.</li>
-            <li><strong>Streamlit</strong>: Interactive frontend for data entry, result display and educational content.</li>
-            <li><strong>XGBoost</strong>: Trained classifier providing probability predictions.</li>
-            <li><strong>scikit‑learn</strong>: Preprocessing (StandardScaler) and joblib serialization for the scaler.</li>
-            <li><strong>joblib / XGBoost native format</strong>: Artifacts saved as scaler.joblib and best_xgb_model.json for reliable loading in production.</li>
-            <li><strong>Deployment</strong>: Backend hosted on Render (free tier); frontend on Streamlit Cloud calling the Render backend via a public URL.</li>
-        </ul>
-
-        <h3>End‑to‑end flow</h3>
-        <ol>
-            <li>User fills the form in the Streamlit UI.</li>
-            <li>Frontend sends a POST JSON request to the FastAPI backend on Render.</li>
-            <li>Backend loads scaler/model, scales input, builds an xgb.DMatrix and calls model.predict.</li>
-            <li>Backend returns class and probability; frontend displays the decision and guidance.</li>
-        </ol>
-
-        <h3>Practical note</h3>
-        <p>The backend runs on Render's free tier which sleeps when idle. Waking the instance typically takes about 50 seconds — expect an initial delay when first accessing the app.</p>
-
-        <h3>Summary</h3>
-        <p>This project highlights API development (FastAPI), ML model productionization (XGBoost + serialization), and fast UI prototyping (Streamlit). Suitable for demonstrating end‑to‑end ML engineering and rapid deployment of prototypes. I will be adding CI/CD, model versioning and external artifact storage (S3) as next steps.</p>
+       <section id="content-en" style="display:none;">
+      <h2>StopDiabete — Full‑stack web app for diabetes tracking and prevention</h2>
+    
+      <p>
+        StopDiabete is a full‑stack web application designed to support day‑to‑day diabetes tracking and prevention:
+        logging glucose readings, viewing trends/statistics, reminders, and an email alert system using trusted contacts
+        (“Alert Contacts”). The goal is to provide a simple, reassuring experience for patients and their relatives.
+        Live demo: <a href="https://stopdiabete-1.onrender.com/" target="_blank">stopdiabete-1.onrender.com</a>.
+      </p>
+    
+      <h3>Tech stack / frameworks and responsibilities</h3>
+      <ul>
+        <li>
+          <strong>Frontend — React : UI library + TypeScript</strong>:
+          SPA architecture, reusable components, pages (Dashboard, Profile, Glucose, Telemonitoring), client-side validation and state.
+        </li>
+        <li>
+          <strong>Vite: build tool</strong>:
+          fast dev server, bundling, frontend tooling.
+        </li>
+        <li>
+          <strong>React Router: routing</strong>:
+          SPA navigation, protected routes (auth), redirects.
+        </li>
+        <li>
+          <strong>Tailwind CSS: utility‑first CSS framework</strong>:
+          responsive UI, consistent modern styling.
+        </li>
+        <li>
+          <strong>Backend — Node.js + Express.js: web framework + TypeScript, FASTAPI</strong>:
+          REST API (auth, glucose readings, profile, alert contacts), validation, security, CORS,AI Model API for risk prediction  </li>
+        <li>
+          <strong>PostgreSQL: relational database</strong>:
+          persistence for users, glucose readings, preferences, and alert events.
+        </li>
+        <li>
+          <strong>pg: PostgreSQL client</strong>:
+          database connectivity and SQL queries via a connection pool.
+        </li>
+        <li>
+          <strong>Nodemailer: email delivery</strong>:
+          sending reminder and alert emails.
+        </li>
+        <li>
+          <strong>Deployment — Render: cloud platform</strong>:
+          frontend + backend hosting and a Render PostgreSQL database.
+        </li>
+      </ul>
+    
+      <h3>End‑to‑end flow</h3>
+      <ol>
+        <li>User logs in (JWT authentication) and accesses protected pages.</li>
+        <li>User logs glucose readings (value, timestamp, context) and reviews history.</li>
+        <li>Backend stores data in PostgreSQL and computes statistics/trends.</li>
+        <li>User configures “Alert Contacts” to receive emails based on predefined rules (alerts/reminders).</li>
+      </ol>
+    
+      <h3>Summary</h3>
+      <p>
+        This project highlights modern full‑stack development (React + Express), authentication, PostgreSQL integration,
+        and an email alert workflow focused on prevention and safety.
+      </p>
     </section>
-
     <footer>
         <p>&copy; 2026 Sandy Frank Kwamou Ngaha</p>
     </footer>
